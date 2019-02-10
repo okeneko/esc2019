@@ -1,1 +1,3 @@
-# eurovision-stan-page
+# Eurovision Stan page
+
+Work in progress...
