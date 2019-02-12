@@ -17,10 +17,32 @@
 const Route = use("Route");
 const Helpers = use("Helpers");
 
-Route.any("*", ({ response }) =>
-  response.download(Helpers.publicPath("index.html"))
-);
-
 // Route.get('/', () => {
 //   return { greeting: 'Hello world in JSON' }
 // })
+
+// Route.any("*", ({ view }) => view.render("main"));
+
+Route.get("/", ({ response }) =>
+  response.download(Helpers.publicPath("index.html"))
+);
+
+Route.get("favicon.ico", ({ response }) => {
+  response.download(Helpers.publicPath("favicon.ico"));
+});
+
+Route.get("js/:file", ({ response, params }) => {
+  response.download(Helpers.publicPath(`js/${params.file}`));
+});
+
+Route.get("css/:file", ({ response, params }) => {
+  response.download(Helpers.publicPath(`css/${params.file}`));
+});
+
+Route.get("img/:file", ({ response, params }) => {
+  response.download(Helpers.publicPath(`img/${params.file}`));
+});
+
+Route.any("*", ({ response }) =>
+  response.download(Helpers.publicPath("index.html"))
+);
