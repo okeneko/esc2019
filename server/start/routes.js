@@ -53,6 +53,10 @@ Route.get("img/:file", ({ response, params }) => {
   response.download(Helpers.publicPath(`img/${params.file}`));
 });
 
+Route.get("flags/:file", ({ response, params }) => {
+  response.download(Helpers.publicPath(`flags/${params.file}`));
+});
+
 Route.any("*", ({ response }) =>
   response.download(Helpers.publicPath("index.html"))
 );
