@@ -13,6 +13,11 @@ class EntrySchema extends Schema {
         .notNullable()
         .references("name")
         .inTable("countries");
+      table
+        .integer("country_id")
+        .unsigned()
+        .references("id")
+        .inTable("countries");
       table.string("artist").notNullable();
       table.string("song").notNullable();
       table.string("spotifyId");

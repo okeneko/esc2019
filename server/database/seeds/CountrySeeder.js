@@ -12,7 +12,7 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use("Factory");
-const Database = use("Database");
+const Country = use("App/Models/Country");
 
 const countries = [
   { name: "Albania" },
@@ -61,7 +61,7 @@ const countries = [
 
 class CountrySeeder {
   async run() {
-    await Database.insert(countries).into("countries");
+    await Country.createMany(countries);
   }
 }
 

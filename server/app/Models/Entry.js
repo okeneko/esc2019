@@ -19,26 +19,25 @@ class Entry extends Model {
     }
   }
 
-  setMusicVideoId(musicVideoId){
-    return parseYoutubeLink(musicVideoId);
+  parseYoutubeLink(link) {
+    const { pathname, hostname, query } = new Url(link, true);
+    if (pathname.includes("/watch")) {
+      return query.v;
+    } else if (hostname.includes("youtu.be")) {
+      return pathname.substring(1);
+    }
   }
 
-  setPerformanceId(performanceId){
-    return parseYoutubeLink(performanceId);
+  setMusicVideoId(musicVideoId) {
+    return this.parseYoutubeLink(musicVideoId);
   }
 
-  setNationalPerformanceId(nationalPerformanceId){
-    return parseYoutubeLink(nationalPerformanceId);
+  setPerformanceId(performanceId) {
+    return this.parseYoutubeLink(performanceId);
   }
 
-}
-
-parseYoutubeLink(link){
-  const { pathname, hostname, query  } = new Url(link, true);
-  if (pathname.includes("/watch")) {
-    return query.v;
-  } else if (hostname.includes("youtu.be")) {
-    return pathname.substring(1);
+  setNationalPerformanceId(nationalPerformanceId) {
+    return this.parseYoutubeLink(nationalPerformanceId);
   }
 }
 

@@ -17,11 +17,21 @@
 const Route = use("Route");
 const Helpers = use("Helpers");
 
-// Route.get('/', () => {
-//   return { greeting: 'Hello world in JSON' }
-// })
+// API routes
+Route.group(() => {
+  Route.post("auth/register", "UserController.register");
+  Route.post("auth/login", "UserController.login");
+  Route.get("countries", "CountryController.index");
+  Route.get("entries", "EntryController.index");
+  Route.get("entries/:country", "EntryController.get");
+  Route.post("entries", "EntryController.create");
+  Route.patch("entries/:country", "EntryController.update").middleware("auth");
+  Route.delete("entries/:country", "EntryController.destroy").middleware(
+    "auth"
+  );
+}).prefix("api");
 
-// Route.any("*", ({ view }) => view.render("main"));
+// Front-end routes
 
 Route.get("/", ({ response }) =>
   response.download(Helpers.publicPath("index.html"))

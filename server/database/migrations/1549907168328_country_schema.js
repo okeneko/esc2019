@@ -12,7 +12,6 @@ class CountrySchema extends Schema {
         .string("name")
         .notNullable()
         .unique();
-      table.boolean("hasEntry").defaultTo(false);
     });
   }
 
