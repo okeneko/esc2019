@@ -12,7 +12,7 @@ export default {};
 
 <style lang="scss" scoped>
 .navbar {
-  height: 11%;
+  height: 1%;
   justify-content: center;
   .navbar-item img {
     max-height: 3rem;

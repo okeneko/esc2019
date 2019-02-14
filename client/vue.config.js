@@ -1,3 +1,10 @@
 module.exports = {
-  outputDir: "../server/public"
+  outputDir: "../server/public",
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3333"
+      }
+    }
+  }
 };
