@@ -7,7 +7,7 @@ export default {
   },
   actions: {
     async fetchEntries({ commit }) {
-      const { data } = await HTTP().get("countries");
+      const { data } = await HTTP().get("entries");
       commit("setEntries", data);
       return data;
     }

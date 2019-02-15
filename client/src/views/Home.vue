@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="columns is-gapless">
-      <div class="column is-5">
+      <div class="column is-two-fifths">
         <!-- <Navbar/> -->
         <section class="hero is-dark upbar"></section>
         <Entries/>
@@ -30,6 +30,6 @@ export default {
   height: 100vh;
 }
 .upbar {
-  height: 2%;
+  height: 2vh;
 }
 </style>
