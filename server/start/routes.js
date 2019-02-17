@@ -22,9 +22,10 @@ Route.group(() => {
   Route.post("auth/register", "UserController.register");
   Route.post("auth/login", "UserController.login");
   Route.get("countries", "CountryController.index");
+  Route.get("countries/entryless", "CountryController.entryless");
   Route.get("entries", "EntryController.index");
   Route.get("entries/:country", "EntryController.get");
-  Route.post("entries", "EntryController.create");
+  Route.post("entries", "EntryController.create").middleware("auth");
   Route.patch("entries/:country", "EntryController.update").middleware("auth");
   Route.delete("entries/:country", "EntryController.destroy").middleware(
     "auth"

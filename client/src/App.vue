@@ -5,6 +5,11 @@
 </template>
 
 <style lang="scss">
+@import "~bulma/sass/utilities/_all";
+$navbar-breakpoint: $tablet;
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
 html,
 body {
   height: 100vh;

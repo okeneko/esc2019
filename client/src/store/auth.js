@@ -44,6 +44,11 @@ export default {
     },
     setLoginError(state, error) {
       state.loginError = error;
+    },
+    setNull(state) {
+      state.username = null;
+      state.password = null;
+      state.loginError = null;
     }
   }
 };
