@@ -61,7 +61,7 @@
         <ul>
           <li v-if="!!props.row.performanceId">
             <a
-              :href="'https:youtu.be/'+props.row.performanceId"
+              :href="'https://youtu.be/'+props.row.performanceId"
               target="_blank"
               class="button is-large is-dark is-outlined is-fullwidth"
             >
@@ -71,7 +71,7 @@
           </li>
           <li v-if="!!props.row.nationalPerformanceId">
             <a
-              :href="'https:youtu.be/'+props.row.nationalPerformanceId"
+              :href="'https://youtu.be/'+props.row.nationalPerformanceId"
               target="_blank"
               class="button is-large is-dark is-outlined is-fullwidth"
             >
@@ -81,7 +81,7 @@
           </li>
           <li v-if="!!props.row.musicVideoId">
             <a
-              :href="'https:youtu.be/'+props.row.musicVideoId"
+              :href="'https://youtu.be/'+props.row.musicVideoId"
               target="_blank"
               class="button is-large is-dark is-outlined is-fullwidth"
             >
