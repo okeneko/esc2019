@@ -6,10 +6,9 @@
     </header>
     <section class="modal-card-body">
       <div class="columns">
-        <div class="column is-one-third" v-if="creating">
-          <b-message type="is-danger" v-if="selectedCountries.length > 1">Select only one country!</b-message>
-          <b-field label="Country (select only one)">
-            <b-select multiple native-size="10" v-model="selectedCountries" @input="onCountryInput">
+        <div class="column is-one-quarter" v-if="creating">
+          <b-field label="Country">
+            <b-select multiple native-size="11" v-model="selectedCountries" @input="onCountryInput">
               <option
                 v-for="country in entrylessCountries"
                 :key="country.name"
@@ -46,6 +45,7 @@
         class="button is-success is-fullwidth"
         type="button"
         @click="create()"
+        :disabled="selectedCountries.length < 1 || artist === null || artist === '' || song === null || song === ''"
       >Create Entry</button>
       <button
         v-if="!creating"
@@ -80,6 +80,7 @@ export default {
   },
   methods: {
     onCountryInput() {
+      this.selectedCountries = [this.selectedCountries[0]];
       this.setCountry(this.selectedCountries[0]);
     },
     create() {
