@@ -59,6 +59,12 @@ export default {
       });
       await dispatch("fetchEntries");
       return data;
+    },
+    async deleteEntry({ state, dispatch }) {
+      const country = state.country.toLowerCase().replace(" ", ",");
+      const { data } = await HTTP().delete(`entries/${country}`);
+      await dispatch("fetchEntries");
+      return data;
     }
   },
   mutations: {
@@ -69,6 +75,7 @@ export default {
       state.creating = true;
     },
     setUpdate(state, entry) {
+      state.creating = false;
       state.country = entry.country;
       state.artist = entry.artist;
       state.song = entry.song;

@@ -25,13 +25,17 @@
 
         <b-table-column class="is-hidden-mobile">
           <h1 class="title is-5">{{props.row.country}}</h1>
-          {{props.row.song}} by {{props.row.artist}}
+          {{props.row.artist}}
+        </b-table-column>
+
+        <b-table-column class="is-hidden-mobile">
+          <h2 class="subtitle">{{props.row.song}}</h2>
         </b-table-column>
 
         <b-table-column class="mobile-row is-hidden-tablet">
           <a @click="toggle(props.row)">
             <h1 class="title is-5">{{props.row.country}}</h1>
-            {{props.row.song}} by {{props.row.artist}}
+            {{!!props.row.song? props.row.song + ' by ' : ''}}{{props.row.artist}}
           </a>
         </b-table-column>
 
@@ -156,9 +160,11 @@ export default {
     },
     setMedia(source, entry) {
       if (source === "youtube") {
-        this.setYouTube(entry);
+        if (!!this.youtube && this.country === entry.country) this.emptyMedia();
+        else this.setYouTube(entry);
       } else if (source === "spotify") {
-        this.setSpotify(entry);
+        if (!!this.spotify && this.country === entry.country) this.emptyMedia();
+        else this.setSpotify(entry);
       }
     },
     isActive(source, country) {
@@ -180,7 +186,7 @@ export default {
       this.$refs.table.toggleDetails(row);
     },
     ...mapMutations("entries", ["setUpdate"]),
-    ...mapMutations("media", ["setSpotify", "setYouTube"]),
+    ...mapMutations("media", ["setSpotify", "setYouTube", "emptyMedia"]),
     ...mapActions("entries", ["fetchEntries"])
   }
 };
