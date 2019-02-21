@@ -28,7 +28,12 @@
       </b-field>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success is-fullwidth" type="button" @click="logIn">Login</button>
+      <button
+        class="button is-success is-fullwidth"
+        type="button"
+        :disabled="emptyFields"
+        @click="logIn"
+      >Login</button>
     </footer>
   </div>
 </template>
@@ -37,18 +42,30 @@
 import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   computed: {
+    emptyFields() {
+      if (
+        this.username === null ||
+        this.password === null ||
+        this.username.length < 1 ||
+        this.password.length < 1
+      )
+        return true;
+      return false;
+    },
     ...mapState("auth", ["username", "password", "loginError"])
   },
   methods: {
     logIn() {
       this.login();
-      this.setNull();
-      this.$parent.close();
-      this.$toast.open({
-        message: "Successfully logged in!",
-        position: "is-bottom",
-        type: "is-light"
-      });
+      if (!this.loginError) {
+        this.$parent.close();
+        this.setNull();
+        this.$toast.open({
+          message: "Successfully logged in!",
+          position: "is-bottom",
+          type: "is-light"
+        });
+      }
     },
     ...mapMutations("auth", ["setUsername", "setPassword", "setNull"]),
     ...mapActions("auth", ["login"])

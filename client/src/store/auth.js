@@ -17,6 +17,7 @@ export default {
           password: state.password
         })
         .then(({ data }) => {
+          commit("setLoginError", null);
           commit("setToken", data.token);
         })
         .catch(() => {

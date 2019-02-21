@@ -10,13 +10,6 @@ $navbar-breakpoint: $tablet;
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
-html,
-body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
 * {
   font-family: "Roboto Condensed", sans-serif;
 }

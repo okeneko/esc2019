@@ -1,8 +1,5 @@
 <template>
-  <div class="table-div" :style="tableHeight">
-    <b-modal :active.sync="isEntryModalActive" has-modal-card>
-      <EntryForm/>
-    </b-modal>
+  <div class="table-div">
     <b-table
       :data="entries"
       ref="table"
@@ -40,9 +37,6 @@
         </b-table-column>
 
         <b-table-column class="has-text-right is-hidden-mobile">
-          <a v-if="isLoggedIn" @click="update(props.row)" class="is-hidden-mobile link edit">
-            <b-icon icon="pencil" size="is-medium"></b-icon>
-          </a>
           <a
             v-if="hasVideos(props.row)"
             @click="setMedia('youtube', props.row)"
@@ -122,31 +116,17 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
-import EntryForm from "@/components/EntryForm";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
-  components: {
-    EntryForm
-  },
   mounted() {
     this.fetchEntries();
-  },
-  data() {
-    return {
-      isEntryModalActive: false
-    };
   },
   computed: {
     isMobile: () => {
       return window.innerWidth < 769;
     },
-    tableHeight: () => {
-      if (window.innerWidth < 769) return "height: 100vh";
-      else return "height: 98vh";
-    },
     ...mapState("entries", ["entries"]),
-    ...mapState("media", ["spotify", "youtube", "country"]),
-    ...mapGetters("auth", ["isLoggedIn"])
+    ...mapState("media", ["spotify", "youtube", "country"])
   },
   methods: {
     hasVideos: entry => {
@@ -178,14 +158,9 @@ export default {
         return "active";
       }
     },
-    update(entry) {
-      this.setUpdate(entry);
-      this.isEntryModalActive = true;
-    },
     toggle(row) {
       this.$refs.table.toggleDetails(row);
     },
-    ...mapMutations("entries", ["setUpdate"]),
     ...mapMutations("media", ["setSpotify", "setYouTube", "emptyMedia"]),
     ...mapActions("entries", ["fetchEntries"])
   }
@@ -197,6 +172,7 @@ export default {
 $spotifyGreen: #1db954;
 $youtubeRed: #ff0000;
 .table-div {
+  height: 100vh;
   overflow-y: scroll;
   .tbl {
     margin-top: -19px;
@@ -231,7 +207,7 @@ $youtubeRed: #ff0000;
     }
   }
   .empty-section {
-    height: 98vh;
+    height: 100vh;
     justify-content: center;
     align-items: center;
   }
