@@ -12,7 +12,7 @@
 ## Development
 
 Clone the repository
-`git clone https://github.com/okeneko/esc2019.git`
+```git clone https://github.com/okeneko/esc2019.git```
 
 ### Server-side setup
 
