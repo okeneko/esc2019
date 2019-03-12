@@ -15,7 +15,9 @@
     </b-modal>
 
     <div :class="'container ' + isHidden">
-      <h1 class="title has-text-centered">ESC2019 Admin Page</h1>
+      <h1 class="title has-text-centered">
+        <router-link to="/">ESC2019</router-link>&nbsp;Admin Page
+      </h1>
       <table class="table is-hoverable is-narrow is-fullwidth">
         <thead>
           <tr>
@@ -89,6 +91,9 @@ export default {
 <style lang="scss" scoped>
 .title {
   margin-top: 1em;
+  a {
+    text-decoration: none;
+  }
 }
 .table {
   th,

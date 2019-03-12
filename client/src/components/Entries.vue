@@ -20,12 +20,12 @@
           >
         </b-table-column>
 
-        <b-table-column class="is-hidden-mobile">
+        <b-table-column class="is-hidden-mobile entry-data">
           <h1 class="title is-5">{{props.row.country}}</h1>
           {{props.row.artist}}
         </b-table-column>
 
-        <b-table-column class="is-hidden-mobile">
+        <b-table-column class="is-hidden-mobile entry-data">
           <h2 class="subtitle">{{props.row.song}}</h2>
         </b-table-column>
 
@@ -36,7 +36,7 @@
           </a>
         </b-table-column>
 
-        <b-table-column class="has-text-right is-hidden-mobile">
+        <b-table-column class="links has-text-right is-hidden-mobile">
           <a
             v-if="hasVideos(props.row)"
             @click="setMedia('youtube', props.row)"
@@ -178,6 +178,12 @@ $youtubeRed: #ff0000;
     margin-top: -19px;
     td {
       vertical-align: middle;
+    }
+    td.entry-data {
+      width: 11em;
+    }
+    td.links {
+      width: 6.5em;
     }
     .link {
       color: #363636;
